@@ -24,7 +24,7 @@ class Card {
   bool checkSuit(string a, string b) const;
 };
 
-const int RUNTIMES = 10000;
+const int RUNTIMES = 100000;
 vector<vector<Card>> reasonableHandRange = {
     // pocket
     {Card("2*"), Card("2*")},
@@ -42,6 +42,7 @@ vector<vector<Card>> reasonableHandRange = {
     {Card("A*"), Card("A*")},
 
     // small suited connector
+
     {Card("4h"), Card("5h")},
     {Card("4s"), Card("5s")},
     {Card("4d"), Card("5d")},
@@ -171,15 +172,18 @@ vector<vector<Card>> allInHandRange = {
 };
 
 vector<vector<Card>> threeBetHandRange = {
+    // clang-format off
     {Card("A*"), Card("A*")},
     {Card("A*"), Card("K*")},
     {Card("A*"), Card("Q*")},
     {Card("A*"), Card("J*")},
-
     {Card("K*"), Card("K*")},
     {Card("Q*"), Card("Q*")},
     {Card("J*"), Card("J*")},
+    // clang-format on
 };
+
+vector<vector<Card>> anyRange = {{Card("*"), Card("*")}};
 
 // existingCards must be explicit defined, no regexp.
 // Patterns much be ordered by decreasing strictness, and has same length.
