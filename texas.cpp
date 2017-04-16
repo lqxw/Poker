@@ -120,6 +120,7 @@ bool Card::operator==(const Card& other) const {
   return checkNum(this->value, other.value) and
          checkSuit(this->suit, other.suit);
 }
+
 void Card::print() const { cout << num2char(value) << suit << " "; }
 
 bool Card::checkNum(int a, int b) const {
@@ -246,11 +247,22 @@ int main() {
       {Card("6*"), Card("9*"), Card("T*")},  // straight
       {Card("9*"), Card("T*"), Card("J*")},  // straight
       {Card("*s"), Card("*s"), Card("*s")},  // flush
+      {Card("7*"), Card("8*"), Card("*")},   // two pair
+      {Card("7*"), Card("7*"), Card("*")},   // trips
+      {Card("8*"), Card("8*"), Card("*")},   // trips
+  };
+  cout << "Suited connector hits straight/flush/two pair/trips on flop: "
+       << 100 * getProb(patterns, myHand) << '%' << endl;
+
+  // Test
+  // Suited connector hits two pair or trips on flop.
+  myHand = {Card("7s"), Card("8s")};
+  patterns = {
       {Card("7*"), Card("8*"), Card("*")},  // two pair
       {Card("7*"), Card("7*"), Card("*")},  // trips
       {Card("8*"), Card("8*"), Card("*")},  // trips
   };
-  cout << "Suited connector hits straight/flush/two pair/trips or better on flop: "
+  cout << "Suited connector hits two pair or trips on flop: "
        << 100 * getProb(patterns, myHand) << '%' << endl;
 
   // Test
@@ -264,17 +276,6 @@ int main() {
       {Card("*s"), Card("*s"), Card("*s"), Card("*ns"), Card("*ns")},  // flush
   };
   cout << "Suited connector hits straight/flush on river: "
-       << 100 * getProb(patterns, myHand) << '%' << endl;
-
-  // Test
-  // Suited connector hits two pair or trips on flop.
-  myHand = {Card("7s"), Card("8s")};
-  patterns = {
-      {Card("7*"), Card("8*"), Card("*")},  // two pair
-      {Card("7*"), Card("7*"), Card("*")},  // trips
-      {Card("8*"), Card("8*"), Card("*")},  // trips
-  };
-  cout << "Suited connector hits two pair or trips on flop: "
        << 100 * getProb(patterns, myHand) << '%' << endl;
 
   // Test
@@ -333,9 +334,9 @@ int main() {
 
   // Test
   // Probability that other player hits trips on flop.
-  othersHand = {{Card("7*"), Card("*")}};
+  othersHand = {{Card("9*"), Card("*")}};
   board = {
-      {Card("7s"), Card("7d"), Card("2s"),  // flop
+      {Card("9s"), Card("9d"), Card("2s"),  // flop
        Card("As"), Card("Kh")}              // my hand
   };
   cout << "Probability that other player hits trips on flop: "
