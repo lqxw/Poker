@@ -20,6 +20,7 @@ double getCallDownExpection(double flop_bet_percent, double turn_bet_percent,
   return expection;
 }
 
+// The expection is one card.
 double getFoldInTurnExpection(double flop_bet_percent, double turn_bet_percent,
                               double river_win_precent) {
   double pot = 100;
@@ -43,6 +44,12 @@ double getCheckInTurnIfMissExpection(double flop_bet_percent,
   double pot = 100;
   double flop_cost = pot * flop_bet_percent;
   pot = pot + 2 * flop_cost;
+
+  // Solve the equation:
+  // win = 0.5*expection*[100 + flop_cost + pot*turn_bet_percent + (pot+2*pot*turn_bet_percent)*river_win_precent] +
+  //       0.5*expection*[100 + flop_cost + pot*river_win_precent]
+  // cost = flop_cost;
+  // expection = cost / (cost + win);
 
   double turn_win = pot * turn_bet_percent * expection;
   pot = pot + 2 * turn_win;
