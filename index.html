@@ -14,43 +14,44 @@ Suited connector hits straight/flush draw on flop: 20.6889%<br>
 Suited connector hits flush draw on flop: ???<br>
 Suited connector high card hits pair on flop: ???<br>
 Suited connector any card hits pair on flop: ???<br>
-<br><br>
+<br>
 2. Flop:<br>
 Suited connector hits straight/flush/two pair/trips on flop: 5.5773%<br>
-<br><br>
+<br>
 3: River:<br>
 Suited connector hits straight/flush on river: 14.331%<br>
 Suited connector hits two pair or trips on river: 10.2767%<br>
 Pocket hits a set on river: 19.1149%<br>
-<br><br>
+<br>
 4. Hand:<br>
 Probability to get AA: 0.4452%<br>
 Probability that other player goes all in with AA, when I have KK: 26.0235%<br>
 Probability that other player goes all in with AA, when I have AK: 12.9579%<br>
 Probability that other player has trips on flop: 2.99852%<br>
-<br><br><br><br><br><br>
+<br><br><br>
 //-------------------------------Pot Size-------------------------------<br>
 1.<br>
 // Always call down, folds in river if miss, can get river_bet_percent pay if hits.<br>
 // The expection is two cards.<br>
 double getCallDownExpection(flop_bet_percent, turn_bet_percent, river_bet_percent)<br>
-<br><br>
+<br>
 getCallDownExpection(1/2, 1/2, 1/2) is 0.25<br>
 getCallDownExpection(1/2, 1/2, 0) is 0.375<br>
-<br><br><br>
+<br><br>
 2.<br>
 // Folds in turn if miss, can get turn_bet_percent/river_bet_percent pay if hits.<br>
 // The expection is one card.<br>
 double getFoldInTurnExpection(flop_bet_percent, turn_bet_percent, river_bet_percent)<br>
-<br><br>
+<br>
 getFoldInTurnExpection(1/2, 1/2, 1/2) is 0.1<br>
 getFoldInTurnExpection(1/2, 1/2, 0) is 0.166667<br>
-<br><br><br>
+getFoldInTurnExpection(1/2, 0, 1/2) is 0.166667<br>
+<br><br>
 3.<br>
 // Checks in turn not matter what, can get river_bet_percent pay if hits in river.<br>
 // The expection is two cards.<br>
 double getCheckInTurnInAllCaseExpection(flop_bet_percent, turn_bet_percent, river_bet_percent)<br>
-<br><br>
+<br>
 getCheckInTurnInAllCaseExpection(1/2, 1/2) is 0.166667<br>
 getCheckInTurnInAllCaseExpection(1/2, 1/4) is 0.2<br>
 getCheckInTurnInAllCaseExpection(1/2, 0) is 0.25<br>
