@@ -4,7 +4,7 @@
 <title></title>
 </head>
 <body>
-<p>
+  <p>
 //-------------------------------Probability-------------------------------
 1. Important:
 Probability to get a playable hand: 22.1396%
@@ -14,15 +14,15 @@ Suited connector hits straight/flush draw on flop: 20.6889%
 Suited connector hits flush draw on flop: ???
 Suited connector high card hits pair on flop: ???
 Suited connector any card hits pair on flop: ???
-<br><br>
+<br>
 2. Flop:
 Suited connector hits straight/flush/two pair/trips on flop: 5.5773%
-<br><br>
+<br>
 3: River:
 Suited connector hits straight/flush on river: 14.331%
 Suited connector hits two pair or trips on river: 10.2767%
 Pocket hits a set on river: 19.1149%
-<br><br>
+<br>
 4. Hand:
 Probability to get AA: 0.4452%
 Probability that other player goes all in with AA, when I have KK: 26.0235%
@@ -37,9 +37,7 @@ double getCallDownExpection(flop_bet_percent, turn_bet_percent, river_bet_percen
 <br>
 getCallDownExpection(1/2, 1/2, 1/2) is 0.25
 getCallDownExpection(1/2, 1/2, 0) is 0.375
-
-
-
+<br><br>
 2.
 // Folds in turn if miss, can get turn_bet_percent/river_bet_percent pay if hits.
 // The expection is one card.
@@ -47,8 +45,7 @@ double getFoldInTurnExpection(flop_bet_percent, turn_bet_percent, river_bet_perc
 <br>
 getFoldInTurnExpection(1/2, 1/2, 1/2) is 0.1
 getFoldInTurnExpection(1/2, 1/2, 0) is 0.166667
-
-
+<br><br>
 3.
 // Checks in turn not matter what, can get river_bet_percent pay if hits in river.
 // The expection is two cards.
@@ -57,5 +54,5 @@ double getCheckInTurnInAllCaseExpection(flop_bet_percent, turn_bet_percent, rive
 getCheckInTurnInAllCaseExpection(1/2, 1/2) is 0.166667
 getCheckInTurnInAllCaseExpection(1/2, 1/4) is 0.2
 getCheckInTurnInAllCaseExpection(1/2, 0) is 0.25
-</p>
-  </body>
+  </p>
+</body>
