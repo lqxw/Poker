@@ -4,6 +4,8 @@
 
 using namespace std;
 
+// Always call down, folds in river if miss, can get river_win_precent pay if hits.
+// The expection is two cards.
 double getCallDownExpection(double flop_bet_percent, double turn_bet_percent,
                             double river_win_precent) {
   double pot = 100;
@@ -20,6 +22,7 @@ double getCallDownExpection(double flop_bet_percent, double turn_bet_percent,
   return expection;
 }
 
+// Folds in turn if miss, can get turn_bet_percent/river_win_precent pay if hits.
 // The expection is one card.
 double getFoldInTurnExpection(double flop_bet_percent, double turn_bet_percent,
                               double river_win_precent) {
@@ -38,6 +41,8 @@ double getFoldInTurnExpection(double flop_bet_percent, double turn_bet_percent,
   return expection;
 }
 
+// Check in turn if miss, can get turn_bet_percent/river_win_precent pay if hits in turn.
+// The expection is one card.
 double getCheckInTurnIfMissExpection(double flop_bet_percent,
                                      double turn_bet_percent,
                                      double river_win_precent) {
@@ -64,6 +69,8 @@ double getCheckInTurnIfMissExpection(double flop_bet_percent,
   // return expection;
 }
 
+// Check in turn not matter what, can get river_win_precent pay if hits in river.
+// The expection is two cards.
 double getCheckInTurnInAllCaseExpection(double flop_bet_percent,
                                         double turn_bet_percent,
                                         double river_win_precent) {
@@ -81,13 +88,13 @@ double getCheckInTurnInAllCaseExpection(double flop_bet_percent,
 }
 
 int main() {
-  cout << "flop 1/2, turn 1/2, river 1/2, calldown expection is "
+  cout << "getCallDownExpection(1/2, 1/2, 1/2) is "
        << getCallDownExpection(0.5, 0.5, 0.5) << endl;
-  cout << "flop 1/2, turn 1/2, river 0, calldown expection is "
+  cout << "getCallDownExpection(1/2, 1/2, 0) is "
        << getCallDownExpection(0.5, 0.5, 0) << endl;
   cout << endl;
-  cout << "flop 1/2, turn 1/2, river 1/2, fold in turn expection is "
+  cout << "getFoldInTurnExpection(1/2, 1/2, 1/2) is "
        << getFoldInTurnExpection(0.5, 0.5, 0.5) << endl;
-  cout << "flop 1/2, turn 1/2, river 0, fold in turn expection is "
+  cout << "getFoldInTurnExpection(1/2, 1/2, 0) is "
        << getFoldInTurnExpection(0.5, 0.5, 0) << endl;
 }
