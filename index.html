@@ -23,5 +23,30 @@ Probability that other player goes all in with AA, when I have AK: 12.9579%
 Probability that other player has trips on flop: 2.99852%
 <br><br><br><br><br>
 //-------------------------------Pot Size-------------------------------
+1.
+// Always call down, folds in river if miss, can get river_bet_percent pay if hits.
+// The expection is two cards.
+double getCallDownExpection(flop_bet_percent, turn_bet_percent, river_bet_percent)
+<br>
+getCallDownExpection(1/2, 1/2, 1/2) is 0.25
+getCallDownExpection(1/2, 1/2, 0) is 0.375
 
 
+
+2.
+// Folds in turn if miss, can get turn_bet_percent/river_bet_percent pay if hits.
+// The expection is one card.
+double getFoldInTurnExpection(flop_bet_percent, turn_bet_percent, river_bet_percent)
+<br>
+getFoldInTurnExpection(1/2, 1/2, 1/2) is 0.1
+getFoldInTurnExpection(1/2, 1/2, 0) is 0.166667
+
+
+3.
+// Checks in turn not matter what, can get river_bet_percent pay if hits in river.
+// The expection is two cards.
+double getCheckInTurnInAllCaseExpection(flop_bet_percent, turn_bet_percent, river_bet_percent)
+<br>
+getCheckInTurnInAllCaseExpection(1/2, 1/2) is 0.166667
+getCheckInTurnInAllCaseExpection(1/2, 1/4) is 0.2
+getCheckInTurnInAllCaseExpection(1/2, 0) is 0.25
