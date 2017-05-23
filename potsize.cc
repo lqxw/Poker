@@ -100,6 +100,8 @@ int main() {
        << getFoldInTurnExpection(0.5, 0.5, 0.5) << endl;
   cout << "getFoldInTurnExpection(1/2, 1/2, 0) is "
        << getFoldInTurnExpection(0.5, 0.5, 0) << endl;
+  cout << "getFoldInTurnExpection(1/2, 0, 1/2) is "
+       << getFoldInTurnExpection(0.5, 0, 0.5) << endl;
   cout << endl;
 
   cout << "getCheckInTurnInAllCaseExpection(1/2, 1/2) is "
