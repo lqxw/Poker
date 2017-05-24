@@ -161,7 +161,7 @@ vector<vector<Card>> threeBetHandRange = {
     // clang-format on
 };
 
-vector<vector<Card>> anyRange = {{Card("*"), Card("*")}};
+// vector<vector<Card>> anyRange = {{Card("*"), Card("*")}};
 
 // Probability that get a playable hand.
 void prob_get_playable_hand() {
@@ -221,7 +221,7 @@ void prob_suited_connector_hits_straight_or_flush_draw_on_flop() {
       {Card("9*"), Card("10*"), Card("*")},
       {Card("*s"), Card("*s"), Card("*")},
   };
-  cout << "Suited connector hits open end straight/flush draw on flop: "
+  cout << "Suited connector hits open ended straight/flush draw on flop: "
        << 100 * getProb(patterns, myHand) << '%' << endl;
 }
 
@@ -243,12 +243,28 @@ void prob_suited_connector_hits_straight_draw_on_flop() {
       {Card("6*"), Card("9*"), Card("*")},
       {Card("9*"), Card("10*"), Card("*")},
   };
-  cout << "Suited connector hits open end straight draw on flop: "
+  cout << "Suited connector hits open ended straight draw on flop: "
        << 100 * getProb(patterns, myHand) << '%' << endl;
 }
 
 // Suited connector hits a straight/flush/two pair/trips on flop.
 void prob_suited_connector_hits_two_pairs_trips_straight_flush_on_flop() {
+  vector<Card> myHand = {Card("7s"), Card("8s")};
+  vector<vector<Card>> patterns = {
+      {Card("5*"), Card("6*"), Card("*")},   // straight draw
+      {Card("6*"), Card("9*"), Card("*")},   // straight draw
+      {Card("9*"), Card("10*"), Card("*")},  // straight draw
+      {Card("*s"), Card("*s"), Card("*")},   // flush draw
+      {Card("7*"), Card("8*"), Card("*")},   // two pair
+      {Card("7*"), Card("7*"), Card("*")},   // trips
+      {Card("8*"), Card("8*"), Card("*")},   // trips
+  };
+  cout << "Suited connector hits two pair, trips, straight/flush draw on flop: "
+       << 100 * getProb(patterns, myHand) << '%' << endl;
+}
+
+// Suited connector hits a straight/flush/two pair/trips on flop.
+void prob_suited_connector_hits_two_pairs_trips_straight_flush_draw_on_flop() {
   vector<Card> myHand = {Card("7s"), Card("8s")};
   vector<vector<Card>> patterns = {
       {Card("4*"), Card("5*"), Card("6*")},  // straight
@@ -314,6 +330,15 @@ void prob_get_AK() {
        << endl;
 }
 
+// // Probability that get 78 in reasonable hand range.
+// void prob_get_78_in_reasonable_range() {
+//   vector<vector<Card>> patterns = {{Card("7*"), Card("8*")}};
+//   vector<Card> myHand = {Card("As"), Card("Kh")};
+//   cout << "Probability that get 78 in reasonable hand range: "
+//        << 100 * getHandProb(patterns, reasonableHandRange, myHand) << '%'
+//        << endl;
+// }
+
 // Probability that other player goes all in with AA, when I have KK.
 void prob_other_has_AA_when_I_have_KK() {
   vector<vector<Card>> patterns = {{Card("A*"), Card("A*")}};
@@ -345,21 +370,26 @@ void prob_other_hits_trips_on_flop() {
 int main() {
   srand(time(NULL));
 
-  // prob_get_playable_hand();
-  // prob_hit_set_on_flop();
-  // prob_any_card_hits_pair_on_flop();
-  // prob_high_card_hits_pair_on_flop();
-  // prob_hits_two_pairs_or_trips_on_flop();
-  // prob_suited_connector_hits_straight_or_flush_draw_on_flop();
-  // prob_suited_connector_hits_flush_draw_on_flop();
-  // prob_suited_connector_hits_straight_draw_on_flop();
-  // prob_suited_connector_hits_two_pairs_trips_straight_flush_on_flop();
-  // prob_suited_connector_hits_straight_or_flush_on_river();
-  // prob_hits_two_pairs_or_trips_on_river();
-  // prob_hit_set_on_river();
-  // prob_get_AA();
+  cout << "1. Important:" << endl;
+  prob_get_playable_hand();
+  prob_hit_set_on_flop();
+  prob_any_card_hits_pair_on_flop();
+  prob_high_card_hits_pair_on_flop();
+  prob_hits_two_pairs_or_trips_on_flop();
+  prob_suited_connector_hits_straight_or_flush_draw_on_flop();
+  prob_suited_connector_hits_flush_draw_on_flop();
+  prob_suited_connector_hits_straight_draw_on_flop();
+  cout << "\n2. Flop:" << endl;
+  prob_suited_connector_hits_two_pairs_trips_straight_flush_on_flop();
+  prob_suited_connector_hits_two_pairs_trips_straight_flush_draw_on_flop();
+  cout << "\n3: River:" << endl;
+  prob_suited_connector_hits_straight_or_flush_on_river();
+  prob_hits_two_pairs_or_trips_on_river();
+  prob_hit_set_on_river();
+  cout << "\n4. Hand:" << endl;
+  prob_get_AA();
   prob_get_AK();
-  // prob_other_has_AA_when_I_have_KK();
-  // prob_other_has_AA_when_I_have_AK();
-  // prob_other_hits_trips_on_flop();
+  prob_other_has_AA_when_I_have_KK();
+  prob_other_has_AA_when_I_have_AK();
+  prob_other_hits_trips_on_flop();
 }
