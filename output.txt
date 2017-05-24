@@ -1,1 +1,25 @@
+1. Important:
+Probability that get a playable hand: 22.275%
+Pocket hits a set on flop: 11.8087%
+Any card hits a pair on flop: 32.4191%
+High card hits a pair on flop: 17.2654%
+Two different cards hit two pairs or trips on flop: 3.4671%
+Suited connector hits open ended straight/flush draw on flop: 20.715%
+Suited connector hits flush draw on flop: 11.7565%
+Suited connector hits open ended straight draw on flop: 10.3752%
 
+2. Flop:
+Suited connector hits two pair, trips, straight/flush draw on flop: 24.0484%
+Suited connector hits straight/flush/two pair/trips on flop: 5.6432%
+
+3: River:
+Suited connector hits straight/flush on river: 14.3687%
+Two different cards hit two pairs or trips on river: 10.3193%
+Pocket hits a set on river: 19.221%
+
+4. Hand:
+Probability that get AA: 0.4602%
+Probability that get AK: 1.2095%
+Probability that other player goes all in with AA, when I have KK: 26.1331%
+Probability that other player goes all in with AA, when I have AK: 12.9631%
+Probability that other player hits trips on flop: 2.92631%
