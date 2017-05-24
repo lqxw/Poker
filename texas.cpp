@@ -1,11 +1,11 @@
 #include "texas.h"
 
 #include <cassert>
-#include <cstdlib>
-#include <ctime>
 #include <iostream>
 
 namespace {
+const int RUNTIMES = 100000;
+
 int char2num(char c) {
   switch (c) {
     case '*':
@@ -217,131 +217,4 @@ float getProb(const vector<vector<Card>>& boardPatterns,
       fail++;
   }
   return (float)success / (float)(fail + success);
-}
-
-int main() {
-  srand(time(NULL));
-  vector<vector<Card>> patterns;
-  vector<Card> myHand;              // Exact hand
-  vector<vector<Card>> othersHand;  // Pattern
-  vector<Card> board;
-
-  // Test
-  // Suited connector hits a straight draw or flush draw on flop.
-  myHand = {Card("7s"), Card("8s")};
-  patterns = {
-      {Card("5*"), Card("6*"), Card("*")},
-      {Card("6*"), Card("9*"), Card("*")},
-      {Card("9*"), Card("10*"), Card("*")},
-      {Card("*s"), Card("*s"), Card("*")},
-  };
-  cout << "Suited connector hits straight/flush draw on flop: "
-       << 100 * getProb(patterns, myHand) << '%' << endl;
-
-  // Test
-  // Suited connector hits a straight/flush/two pair/trips on flop.
-  myHand = {Card("7s"), Card("8s")};
-  patterns = {
-      {Card("4*"), Card("5*"), Card("6*")},  // straight
-      {Card("5*"), Card("6*"), Card("9*")},  // straight
-      {Card("6*"), Card("9*"), Card("T*")},  // straight
-      {Card("9*"), Card("T*"), Card("J*")},  // straight
-      {Card("*s"), Card("*s"), Card("*s")},  // flush
-      {Card("7*"), Card("8*"), Card("*")},   // two pair
-      {Card("7*"), Card("7*"), Card("*")},   // trips
-      {Card("8*"), Card("8*"), Card("*")},   // trips
-  };
-  cout << "Suited connector hits straight/flush/two pair/trips on flop: "
-       << 100 * getProb(patterns, myHand) << '%' << endl;
-
-  // Test
-  // Suited connector hits two pair or trips on flop.
-  myHand = {Card("7s"), Card("8s")};
-  patterns = {
-      {Card("7*"), Card("8*"), Card("*")},  // two pair
-      {Card("7*"), Card("7*"), Card("*")},  // trips
-      {Card("8*"), Card("8*"), Card("*")},  // trips
-  };
-  cout << "Suited connector hits two pair or trips on flop: "
-       << 100 * getProb(patterns, myHand) << '%' << endl;
-
-  // Test
-  // Suited connector hits a straight or flush on river.
-  myHand = {Card("7s"), Card("8s")};
-  patterns = {
-      {Card("4*"), Card("5*"), Card("6*"), Card("*"), Card("*")},  // straight
-      {Card("5*"), Card("6*"), Card("9*"), Card("*"), Card("*")},  // straight
-      {Card("6*"), Card("9*"), Card("T*"), Card("*"), Card("*")},  // straight
-      {Card("9*"), Card("T*"), Card("J*"), Card("*"), Card("*")},  // straight
-      {Card("*s"), Card("*s"), Card("*s"), Card("*ns"), Card("*ns")},  // flush
-  };
-  cout << "Suited connector hits straight/flush on river: "
-       << 100 * getProb(patterns, myHand) << '%' << endl;
-
-  // Test
-  // Suited connector hits two pair or trips on river.
-  myHand = {Card("7s"), Card("8s")};
-  patterns = {
-      {Card("7*"), Card("8*"), Card("*"), Card("*"), Card("*")},  // two pair
-      {Card("7*"), Card("7*"), Card("*"), Card("*"), Card("*")},  // trips
-      {Card("8*"), Card("8*"), Card("*"), Card("*"), Card("*")},  // trips
-  };
-  cout << "Suited connector hits two pair or trips on river: "
-       << 100 * getProb(patterns, myHand) << '%' << endl;
-
-  // Test
-  // Pocket hits a set on flop.
-  myHand = {Card("7s"), Card("7d")};
-  patterns = {
-      {Card("7*"), Card("*"), Card("*")},
-  };
-  cout << "Pocket hits a set on flop: " << 100 * getProb(patterns, myHand)
-       << '%' << endl;
-
-  // Test
-  // Pocket hits a set on river.
-  myHand = {Card("7s"), Card("7d")};
-  patterns = {
-      {Card("7*"), Card("*"), Card("*"), Card("*"), Card("*")},
-  };
-  cout << "Pocket hits a set on river: " << 100 * getProb(patterns, myHand)
-       << '%' << endl;
-
-  // Test
-  // probability to get a playable hand.
-  cout << "Probability to get a playable hand: "
-       << 100 * getHandProb(reasonableHandRange) << '%' << endl;
-
-  // Test
-  // probability to get AA.
-  patterns = {{Card("A*"), Card("A*")}};
-  cout << "Probability to get AA: " << 100 * getHandProb(patterns) << '%'
-       << endl;
-
-  // Test
-  // Probability that other player goes all in with AA, when I have KK.
-  patterns = {{Card("A*"), Card("A*")}};
-  myHand = {Card("Ks"), Card("Kh")};
-  cout << "Probability that other player goes all in with AA, when I have KK: "
-       << 100 * getHandProb(patterns, allInHandRange, myHand) << '%' << endl;
-
-  // Test
-  // Probability that other player goes all in with AA, when I have AK.
-  othersHand = {{Card("A*"), Card("A*")}};
-  myHand = {Card("As"), Card("Kh")};
-  cout << "Probability that other player goes all in with AA, when I have AK: "
-       << 100 * getHandProb(othersHand, allInHandRange, myHand) << '%' << endl;
-
-  // Test
-  // Probability that other player hits trips on flop.
-  othersHand = {{Card("9*"), Card("*")}};
-  board = {
-      {Card("9s"), Card("9d"), Card("2s"),  // flop
-       Card("As"), Card("Kh")}              // my hand
-  };
-  cout << "Probability that other player hits trips on flop: "
-       << 100 * getHandProb(othersHand, reasonableHandRange, board) << '%'
-       << endl;
-
-  return 0;
 }
