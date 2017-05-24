@@ -176,7 +176,7 @@ float getHandProb(const vector<vector<Card>>& specificHandPatterns,
                   const vector<Card>& existingCards) {
   int success = 0;
   int fail = 0;
-  for (int i = 0; i < RUNTIMES * 10; i++) {
+  for (int i = 0; i < RUNTIMES; i++) {
     vector<Card> currentHand = generateRandomCards(existingCards, 2);
     if (!isMatch(handRanges, currentHand)) continue;
     if (isMatch(specificHandPatterns, currentHand))
