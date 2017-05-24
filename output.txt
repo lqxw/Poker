@@ -27,7 +27,7 @@ Probability that other player hits trips on flop: 2.92631%
 
 
 
--------------------------------Pot Size-------------------------------<br>
+-------------------------------Pot Size-------------------------------
 1. Always call down, folds in river if miss, can get river_bet_percent pay if hits.
 The expection is two cards.
 getCallDownExpection(1/2, 1/2, 1/2) is 0.25
