@@ -4,8 +4,8 @@
 
 using namespace std;
 
-// Always call down, folds in river if miss, can get river_bet_percent pay if hits.
-// The expection is two cards.
+// Always call down, folds in river if miss, can get river_bet_percent pay if
+// hits. The expection is two cards.
 double getCallDownExpection(double flop_bet_percent, double turn_bet_percent,
                             double river_bet_percent) {
   double pot = 100;
@@ -22,8 +22,8 @@ double getCallDownExpection(double flop_bet_percent, double turn_bet_percent,
   return expection;
 }
 
-// Folds in turn if miss, can get turn_bet_percent/river_bet_percent pay if hits.
-// The expection is one card.
+// Folds in turn if miss, can get turn_bet_percent/river_bet_percent pay if
+// hits. The expection is one card.
 double getFoldInTurnExpection(double flop_bet_percent, double turn_bet_percent,
                               double river_bet_percent) {
   double pot = 100;
@@ -41,8 +41,8 @@ double getFoldInTurnExpection(double flop_bet_percent, double turn_bet_percent,
   return expection;
 }
 
-// Checks in turn not matter what, can get river_bet_percent pay if hits in river.
-// The expection is two cards.
+// Checks in turn not matter what, can get river_bet_percent pay if hits in
+// river. The expection is two cards.
 double getCheckInTurnInAllCaseExpection(double flop_bet_percent,
                                         double river_bet_percent) {
   double pot = 100;
@@ -58,9 +58,8 @@ double getCheckInTurnInAllCaseExpection(double flop_bet_percent,
   return expection;
 }
 
-// Check in turn if miss, can get turn_bet_percent/river_bet_percent pay if hits in turn.
-// The expection is one card.
-// Too complicated to calculate...
+// Check in turn if miss, can get turn_bet_percent/river_bet_percent pay if hits
+// in turn. The expection is one card. Too complicated to calculate...
 /*
 double getCheckInTurnIfMissExpection(double flop_bet_percent,
                                      double turn_bet_percent,
@@ -70,7 +69,8 @@ double getCheckInTurnIfMissExpection(double flop_bet_percent,
   pot = pot + 2 * flop_cost;
 
   // Solve the equation:
-  // win = 0.5*expection*[100 + flop_cost + pot*turn_bet_percent + (pot+2*pot*turn_bet_percent)*river_bet_percent] +
+  // win = 0.5*expection*[100 + flop_cost + pot*turn_bet_percent +
+(pot+2*pot*turn_bet_percent)*river_bet_percent] +
   //       0.5*expection*[100 + flop_cost + pot*river_bet_percent]
   // cost = flop_cost;
   // expection = cost / (cost + win);
@@ -90,12 +90,18 @@ double getCheckInTurnIfMissExpection(double flop_bet_percent,
 */
 
 int main() {
+  cout << "1. Always call down, folds in river if miss, can get river_bet_percent "
+          "pay if hits.\n"
+       << "The expection is two cards."<<endl;
   cout << "getCallDownExpection(1/2, 1/2, 1/2) is "
        << getCallDownExpection(0.5, 0.5, 0.5) << endl;
   cout << "getCallDownExpection(1/2, 1/2, 0) is "
        << getCallDownExpection(0.5, 0.5, 0) << endl;
   cout << endl;
 
+  cout << "2. Folds in turn if miss, can get turn_bet_percent/river_bet_percent "
+          "pay if hits.\n"
+       << "The expection is one card."<<endl;
   cout << "getFoldInTurnExpection(1/2, 1/2, 1/2) is "
        << getFoldInTurnExpection(0.5, 0.5, 0.5) << endl;
   cout << "getFoldInTurnExpection(1/2, 1/2, 0) is "
@@ -104,6 +110,9 @@ int main() {
        << getFoldInTurnExpection(0.5, 0, 0.5) << endl;
   cout << endl;
 
+  cout << "3. Checks in turn not matter what, can get river_bet_percent pay if "
+          "hits in river.\n"
+       << "The expection is two cards."<<endl;
   cout << "getCheckInTurnInAllCaseExpection(1/2, 1/2) is "
        << getCheckInTurnInAllCaseExpection(0.5, 0.5) << endl;
   cout << "getCheckInTurnInAllCaseExpection(1/2, 1/4) is "
